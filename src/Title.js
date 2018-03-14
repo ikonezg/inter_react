@@ -4,7 +4,8 @@ class Title extends Component{
 
     state = {
         color: '000',
-        toggle: false
+        toggle: false,
+        title: 'Blazing Edge (zadatak)'
     }
 
     componentWillMount(){
@@ -41,12 +42,26 @@ class Title extends Component{
             this.loadRandomColor(); 
         }
     }
+
+    addTitleHandler =(event)=>{
+        var stateCopy = {...this.state}; 
+        stateCopy.title = event.target.value;
+        this.setState({...stateCopy}); 
+    }
+
     render(){
         return(
-            <h1 onClick={this.toggleColor}
-            style={{
-                color: `#${this.state.color}`
-            }}>Blazing Edge (zadatak)</h1> 
+            <div>
+                <h1 onClick={this.toggleColor}
+                 style={{
+                    color: `#${this.state.color}`
+                }}>{this.state.title}</h1>
+            
+                <input 
+                value={this.state.title}
+                onChange={(event) => this.addTitleHandler(event)}
+                />
+            </div>
         );
 
     }
